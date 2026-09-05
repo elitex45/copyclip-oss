@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/logo-256.png" width="128" alt="CopyClip OSS"></p>
+
 # CopyClip OSS
 
 An open-source clone of the CopyClip menu bar clipboard manager for macOS, with one big
