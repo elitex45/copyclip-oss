@@ -1,0 +1,13 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - run: ./scripts/make-app.sh
+      - run: ./build/CopyClipOSS.app/Contents/MacOS/CopyClipOSS --selftest
+      - uses: actions/upload-artifact@v4
+        with:
+          name: CopyClipOSS.app
+          path: build/CopyClipOSS.app
