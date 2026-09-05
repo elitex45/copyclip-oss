@@ -13,12 +13,19 @@ Requires macOS 14+. Touch ID requires a Mac with a Secure Enclave (any Apple Sil
 
 ## Install
 
-Download `CopyClipOSS.app.zip` from the [latest release](https://github.com/elitex45/copyclip-oss/releases/latest),
-unzip, and drag `CopyClipOSS.app` to `/Applications`. The app is ad-hoc signed, so the first launch needs:
+1. Download `CopyClipOSS.dmg` from the [latest release](https://github.com/elitex45/copyclip-oss/releases/latest).
+2. Open it and drag `CopyClipOSS.app` onto the `Applications` shortcut.
+3. First launch only: macOS will say it "cannot verify" the app, because it is not notarized by Apple
+   (that costs a $99/year developer account). Either
+   **right-click the app, choose Open, then click Open again**, or run once:
 
-```bash
-xattr -dr com.apple.quarantine /Applications/CopyClipOSS.app
-```
+   ```bash
+   xattr -dr com.apple.quarantine /Applications/CopyClipOSS.app
+   ```
+
+4. A paperclip appears in the menu bar. Click it and set your PIN.
+
+The `.zip` in the release is the same app, for people who prefer it: unzip, move to `/Applications`, same step 3.
 
 Or build it yourself in one minute (below).
 
@@ -26,6 +33,7 @@ Or build it yourself in one minute (below).
 
 ```bash
 ./scripts/make-app.sh          # ad-hoc signed, hardened runtime -> build/CopyClipOSS.app
+./scripts/make-dmg.sh          # -> build/CopyClipOSS.dmg
 open build/CopyClipOSS.app
 ```
 
