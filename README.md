@@ -11,24 +11,34 @@ difference: **your clipboard history is encrypted at rest and locked behind Touc
 
 Requires macOS 14+. Touch ID requires a Mac with a Secure Enclave (any Apple Silicon or T2 Mac).
 
-## Install
+## Install and run
 
 1. Download `CopyClipOSS.dmg` from the [latest release](https://github.com/elitex45/copyclip-oss/releases/latest).
-2. Open it and drag `CopyClipOSS.app` onto the `Applications` shortcut.
-3. First launch only: macOS says it "could not verify" the app, because it is not notarized by Apple
-   (that needs a $99/year developer account). Click **Done**, then open
-   **System Settings > Privacy & Security**, scroll down, and click **Open Anyway** next to CopyClipOSS.
-   Or skip the dialog entirely by running once:
+2. Double-click the DMG. Drag `CopyClipOSS` onto the `Applications` folder shortcut. Eject the DMG.
+3. Open **Applications** and double-click `CopyClipOSS`.
+4. macOS shows **"CopyClipOSS" Not Opened, Apple could not verify...** This is normal: the app is not
+   notarized by Apple (that needs a $99/year developer account). Click **Done**.
+5. Open **System Settings > Privacy & Security**. Scroll to the bottom. Next to
+   *"CopyClipOSS" was blocked* click **Open Anyway**, then confirm with your password or Touch ID.
+
+   Prefer the terminal? Run this once instead of steps 4 and 5:
 
    ```bash
    xattr -dr com.apple.quarantine /Applications/CopyClipOSS.app
+   open /Applications/CopyClipOSS.app
    ```
 
-4. A paperclip appears in the menu bar. Click it and set your PIN.
+6. A paperclip icon appears in the menu bar (top right). Nothing opens in the Dock; this is a menu bar app.
+7. Click the paperclip. Choose a PIN (6+ characters), leave **Use Touch ID** on, click **Create**.
+8. Copy any text. Click the paperclip again. Click an item to put it back on the clipboard.
+9. After 60 seconds it locks. The next click asks for Touch ID, or your PIN.
 
-The `.zip` in the release is the same app, for people who prefer it: unzip, move to `/Applications`, same step 3.
+Want it to start with your Mac? Click the gear icon in the panel and turn on **Launch at login**.
 
-Or build it yourself in one minute (below).
+**Uninstall:** quit it from the power icon in the panel, delete `/Applications/CopyClipOSS.app`,
+and delete `~/Library/Application Support/CopyClipOSS` (your encrypted history).
+
+The `.zip` in the release is the same app: unzip, move to `/Applications`, then follow from step 3.
 
 ## Build
 
