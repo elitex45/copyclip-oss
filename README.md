@@ -15,9 +15,10 @@ Requires macOS 14+. Touch ID requires a Mac with a Secure Enclave (any Apple Sil
 
 1. Download `CopyClipOSS.dmg` from the [latest release](https://github.com/elitex45/copyclip-oss/releases/latest).
 2. Open it and drag `CopyClipOSS.app` onto the `Applications` shortcut.
-3. First launch only: macOS will say it "cannot verify" the app, because it is not notarized by Apple
-   (that costs a $99/year developer account). Either
-   **right-click the app, choose Open, then click Open again**, or run once:
+3. First launch only: macOS says it "could not verify" the app, because it is not notarized by Apple
+   (that needs a $99/year developer account). Click **Done**, then open
+   **System Settings > Privacy & Security**, scroll down, and click **Open Anyway** next to CopyClipOSS.
+   Or skip the dialog entirely by running once:
 
    ```bash
    xattr -dr com.apple.quarantine /Applications/CopyClipOSS.app
