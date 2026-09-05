@@ -39,11 +39,13 @@ enum SelfTest {
             let raw = try Data(contentsOf: v.bodyURL)
             return !String(decoding: raw, as: UTF8.self).contains("hello")
         }
-        check("secure enclave wrap (no prompt)") {
+        if !SecureEnclaveWrap.isAvailable {
+            print("SKIP secure enclave wrap: no Touch ID enrolled on this machine (PIN path still works)")
+        } else { check("secure enclave wrap (no prompt)") {
             let w = try SecureEnclaveWrap.wrap(dek: Data(repeating: 7, count: 32))
             print("  SE blob bytes: \(w.seKeyBlob.count)")
             return w.seKeyBlob.count > 0 && !w.sealedDEK.elementsEqual(Data(repeating: 7, count: 32))
-        }
+        } }
         if CommandLine.arguments.contains("--touchid") {
             check("secure enclave unwrap (TOUCH THE SENSOR)") {
                 let dek = Crypto.randomBytes(32)
